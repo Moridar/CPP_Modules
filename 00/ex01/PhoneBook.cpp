@@ -2,7 +2,7 @@
 
 PhoneBook::PhoneBook()
 {
-	index = 0;
+	contacts = 0;
 }
 
 void PhoneBook::rotatePhoneBook()
@@ -10,27 +10,39 @@ void PhoneBook::rotatePhoneBook()
 	for (int i = 7; i > 0; i--)
 		phonebook[i] = phonebook[i - 1];
 }
-void PhoneBook::addContact(Contact c)
+void PhoneBook::add()
 {
-	if (index < 8)
-		index++;
+	std::string name, lastname, nickname, number, darkestSecret;
+	std::cout << "Enter name: ";
+	std::cin >> name;
+	std::cout << "Enter lastname: ";
+	std::cin >> lastname;
+	std::cout << "Enter nickname: ";
+	std::cin >> nickname;
+	std::cout << "Enter number: ";
+	std::cin >> number;
+	std::cout << "Enter darkest secret: ";
+	std::cin >> darkestSecret;
+	if (contacts < 8)
+		contacts++;
 	rotatePhoneBook();
-	phonebook[0] = c;
+	phonebook[0] = Contact(name, lastname, nickname, number, darkestSecret);
 }
-void PhoneBook::printContact(int i)
+void PhoneBook::get(int i)
 {
-	phonebook[i].printContact();
+	if (i >=0 && i < contacts)
+		phonebook[i].longinfo();
 }
-void PhoneBook::printPhoneBook()
+void PhoneBook::overview()
 {
 	int i = -1;
-	while (++i < index)
-		phonebook[i].quickPrint(i);
+	while (++i < contacts)
+		phonebook[i].shortinfo(i);
 }
 
 bool PhoneBook::isEmpty()
 {
-	if (index == 0)
+	if (contacts == 0)
 		return true;
 	return false;
 }

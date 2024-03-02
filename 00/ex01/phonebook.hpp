@@ -17,22 +17,22 @@ class Contact
 	public:	
 		Contact();
 		Contact(std::string name, std::string lastname, std::string nickname, std::string number, std::string darkestSecret);
-		void printContact();
-		void quickPrint(int i);
+		void longinfo();
+		void shortinfo(int i);
 };
 
 class PhoneBook
 {
 	private:
 		Contact phonebook[8];
-		int index;
+		int contacts;
 		void rotatePhoneBook();
 	public:
 		PhoneBook();
 		bool isEmpty();
-		void addContact(Contact c);
-		void printContact(int index);
-		void printPhoneBook();
+		void add();
+		void get(int index);
+		void overview();
 };
 
 #endif

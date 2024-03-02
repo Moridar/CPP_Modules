@@ -16,7 +16,7 @@ Contact::Contact(std::string name, std::string lastname, std::string nickname, s
 	this->number = number;
 	this->darkestSecret = darkestSecret;
 }
-void Contact::printContact()
+void Contact::longinfo()
 {
 	std::cout << "Name: " << name << std::endl;
 	std::cout << "Lastname: " << lastname << std::endl;
@@ -25,7 +25,7 @@ void Contact::printContact()
 	std::cout << "Darkest Secret: " << darkestSecret << std::endl;
 }
 
-void Contact::quickPrint(int i)
+void Contact::shortinfo(int i)
 {
 	std::cout << std::setw(10) << i << "|";
 	std::cout << std::setw(10) << name.substr(0, 10) << "|";

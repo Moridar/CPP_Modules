@@ -10,21 +10,7 @@ int main(void)
 		std::cout << "Enter a command: ";
 		std::cin >> command;
 		if (command == "ADD")
-		{
-			std::string name, lastname, nickname, number, darkestSecret;
-			std::cout << "Enter name: ";
-			std::cin >> name;
-			std::cout << "Enter lastname: ";
-			std::cin >> lastname;
-			std::cout << "Enter nickname: ";
-			std::cin >> nickname;
-			std::cout << "Enter number: ";
-			std::cin >> number;
-			std::cout << "Enter darkest secret: ";
-			std::cin >> darkestSecret;
-			Contact c(name, lastname, nickname, number, darkestSecret);
-			pb.addContact(c);
-		}
+			pb.add();
 		else if (command == "SEARCH")
 		{
 			if (pb.isEmpty())
@@ -32,7 +18,7 @@ int main(void)
 				std::cout << "Phonebook is empty." << std::endl;
 				continue;
 			}
-			pb.printPhoneBook();
+			pb.overview();
 			std::cout << "Enter index: ";
 			int index;
 			std::cin >> index;
@@ -42,7 +28,7 @@ int main(void)
        			 std::cout << "Invalid input. Please enter a number." << std::endl;
   		  	} 
 			else
-				pb.printContact(index);
+				pb.get(index);
 			command = "";
 		}
 		else if (command == "EXIT")
