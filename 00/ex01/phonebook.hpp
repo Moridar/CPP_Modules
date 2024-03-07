@@ -2,24 +2,10 @@
 #define PHONEBOOK_HPP
 
 #include <iostream>
-#include <string.h>
+#include <string>
 #include <cctype>
-#include <iomanip>
+#include "Contact.hpp"
 
-class Contact
-{
-	private:
-		std::string name;
-		std::string lastname;
-		std::string nickname;
-		std::string number;
-		std::string darkestSecret;
-	public:	
-		Contact();
-		Contact(std::string name, std::string lastname, std::string nickname, std::string number, std::string darkestSecret);
-		void longinfo();
-		void shortinfo(int i);
-};
 
 class PhoneBook
 {
@@ -27,12 +13,14 @@ class PhoneBook
 		Contact phonebook[8];
 		int contacts;
 		void rotatePhoneBook();
-	public:
-		PhoneBook();
 		bool isEmpty();
 		void add();
+		void search();
 		void get(int index);
-		void overview();
+		int overview();
+	public:
+		PhoneBook();
+		void open();	
 };
 
 #endif

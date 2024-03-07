@@ -1,4 +1,4 @@
-#include "phonebook.hpp"
+#include "PhoneBook.hpp"
 
 PhoneBook::PhoneBook()
 {
@@ -32,12 +32,20 @@ void PhoneBook::get(int i)
 {
 	if (i >=0 && i < contacts)
 		phonebook[i].longinfo();
+	else
+		std::cout << "The index doesnt exist" << std::endl;
 }
-void PhoneBook::overview()
+int PhoneBook::overview()
 {
+	if (this->isEmpty())
+	{
+		std::cout << "Phonebook is empty." << std::endl;
+		return (0);
+	}
 	int i = -1;
 	while (++i < contacts)
 		phonebook[i].shortinfo(i);
+	return (1);
 }
 
 bool PhoneBook::isEmpty()
@@ -45,4 +53,36 @@ bool PhoneBook::isEmpty()
 	if (contacts == 0)
 		return true;
 	return false;
+}
+void PhoneBook::search()
+{
+	if (this->overview() == 0)
+		return ;
+	std::cout << "Enter index: ";
+	int index;
+	std::cin >> index;
+	if (std::cin.fail()) 
+	{
+			std::cin.clear(); // clear the fail state
+			std::cout << "Invalid input. Please enter a number." << std::endl;
+	} 
+	else
+		this->get(index);
+}
+
+void PhoneBook::open()
+{
+	std::string command;
+
+	while (1)
+	{
+		std::cout << "Enter a command: ";
+		std::cin >> command;
+		if (command == "ADD")
+			this->add();
+		if (command == "SEARCH")
+			this->search();
+		if (command == "EXIT")
+			break;
+	}
 }
