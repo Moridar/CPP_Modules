@@ -50,24 +50,25 @@ int PhoneBook::overview()
 
 bool PhoneBook::isEmpty()
 {
-	if (contacts == 0)
-		return true;
-	return false;
+	return (contacts == 0);
 }
 void PhoneBook::search()
 {
+	int index;
+	
 	if (this->overview() == 0)
 		return ;
-	std::cout << "Enter index: ";
-	int index;
-	std::cin >> index;
-	if (std::cin.fail()) 
+	while (1)
 	{
-			std::cin.clear(); // clear the fail state
-			std::cout << "Invalid input. Please enter a number." << std::endl;
+		std::cout << "Enter index: ";
+		std::cin >> index;
+		if (!std::cin.fail())
+			break ;
+		std::cin.clear();
+		std::cin.ignore(10000, '\n');
+		std::cout << "Invalid input. Please enter a number." << std::endl;
 	} 
-	else
-		this->get(index);
+	this->get(index);
 }
 
 void PhoneBook::open()
