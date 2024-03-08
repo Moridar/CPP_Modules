@@ -16,7 +16,7 @@ class PhoneBook
 		bool isEmpty();
 		void add();
 		void search();
-		void get(int index);
+		int get(int index);
 		int overview();
 	public:
 		PhoneBook();
