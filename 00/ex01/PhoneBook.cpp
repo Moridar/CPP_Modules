@@ -16,7 +16,7 @@ static int getinput(std::string key, std::string *pointer)
 	std::cout << "Enter " + key + ":";
 	std::getline(std::cin, *pointer);
 	if (std::cin.eof())
-		std::exit(0);
+		return (0);
 	if (pointer->empty())
 		return (0);
 	return (1);
@@ -26,16 +26,18 @@ void PhoneBook::add()
 {
 	std::string name, lastname, nickname, number, darkestSecret;
 	
-	while (!getinput("name", &name))
+	while (!std::cin.eof() && !getinput("name", &name) )
 		;
-	while (!getinput("lastname", &lastname))
+	while (!std::cin.eof() && !getinput("lastname", &lastname))
 		;
-	while (!getinput("nickname", &nickname))
+	while (!std::cin.eof() && !getinput("nickname", &nickname))
 		;
-	while (!getinput("number", &number))
+	while (!std::cin.eof() && !getinput("number", &number))
 		;
-	while (!getinput("darkest secret", &darkestSecret))
+	while (!std::cin.eof() && !getinput("darkest secret", &darkestSecret))
 		;
+	if (std::cin.eof())
+		return ;
 	if (contacts < 8)
 		contacts++;
 	rotatePhoneBook();
