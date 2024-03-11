@@ -13,6 +13,10 @@
 #define __ACCOUNT_H__
 #include <iostream>
 #include <ctime>
+// #define C_BLUE  "\033[1;34m"
+// #define C_DEF  "\x1B[0m"
+#define C_BLUE ""
+#define C_DEF ""
 
 // ************************************************************************** //
 //                               Account Class                                //
