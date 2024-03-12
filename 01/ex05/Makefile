@@ -1,4 +1,4 @@
-NAME = Harl
+NAME = harl
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -g 
 SRCS = main.cpp Harl.cpp
