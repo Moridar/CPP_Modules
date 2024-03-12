@@ -1,6 +1,6 @@
 NAME = replace
 CC = c++
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g 
 SRCS = main.cpp 
 OBJS = $(SRCS:.cpp=.o)
 

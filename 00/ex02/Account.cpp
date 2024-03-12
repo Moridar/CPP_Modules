@@ -7,16 +7,16 @@ int Account::_totalNbWithdrawals = 0;
 
 void	Account::_displayTimestamp( void )
 {
-	// std::time_t rawtime;
-    // std::tm* timeinfo;
-    // char buffer[80];
+	std::time_t rawtime;
+    std::tm* timeinfo;
+    char buffer[80];
 
-    // std::time(&rawtime);
-    // timeinfo = std::localtime(&rawtime);
+    std::time(&rawtime);
+    timeinfo = std::localtime(&rawtime);
 
-    // std::strftime(buffer, 80, "[%Y%m%d_%H%M%S] ", timeinfo);
-    // std::cout << buffer;
-	std::cout << "[19920104_091532] ";
+    std::strftime(buffer, 80, "[%Y%m%d_%H%M%S] ", timeinfo);
+    std::cout << buffer;
+	// std::cout << "[19920104_091532] ";
 }
 int	Account::getNbAccounts( void )
 {
