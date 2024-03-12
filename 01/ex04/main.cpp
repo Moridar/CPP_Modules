@@ -8,6 +8,7 @@ static std::string replace(std::ifstream &file, std::string s1, std::string s2)
 	std::string newline = "";
 	size_t pos;
 	
+
 	while (std::getline(file, line))
 	{
 		if (newline != "")
@@ -27,6 +28,11 @@ static int	initialise(int argc, char **argv, std::ifstream &file, std::ofstream 
 	if (argc != 4)
 	{
 		std::cerr << "Usage: ./replace filename s1 s2" << std::endl;
+		return (1);
+	}
+	if ((std::string) argv[2] == "")
+	{
+		std::cerr << "Error: s1 is empty" << std::endl;
 		return (1);
 	}
 	file.open(argv[1]);
