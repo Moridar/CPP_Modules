@@ -8,7 +8,6 @@ static std::string replace(std::ifstream &file, std::string s1, std::string s2)
 	std::string newline = "";
 	size_t pos;
 	
-
 	while (std::getline(file, line))
 	{
 		if (newline != "")
