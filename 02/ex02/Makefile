@@ -1,7 +1,7 @@
 NAME = a.out
 CC = c++
-CFLAGS = -Wall -Wextra -Werror
-SRCS = main.cpp Fixed.cpp
+CFLAGS = -Wall -Wextra -Werror -std=c++11
+SRCS = Fixed.cpp main.cpp
 INCLUDES = Fixed.hpp
 OBJS = $(SRCS:.cpp=.o)
 
@@ -13,7 +13,7 @@ all: $(NAME)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # Link object files into executable
-$(NAME): $(OBJS) $(INCLUDES)
+$(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $^ -o $@
 
 # Clean up object files and executable
