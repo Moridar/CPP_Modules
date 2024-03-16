@@ -1,7 +1,8 @@
-NAME = harl
+NAME = a.out
 CC = c++
-CFLAGS += -Wall -Wextra -Werror
-SRCS = main.cpp Harl.cpp
+CFLAGS = -Wall -Wextra -Werror -std=c++11
+SRCS = Fixed.cpp Point.cpp bsp.cpp main.cpp
+INCLUDES = Fixed.hpp
 OBJS = $(SRCS:.cpp=.o)
 
 # Default target

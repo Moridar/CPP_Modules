@@ -34,5 +34,7 @@ std::cout << "a * b = " << a << " * " << b << " = " << a * b << std::endl;
 Fixed c (a * b);
 std::cout << "Fixed c (a * b): " << c << std::endl;
 
+std::cout << "min(a, b): " << Fixed::min(a, b) << std::endl;
+std::cout << "max(a, b): " << Fixed::max(a, b) << std::endl;
 return 0;
 }
