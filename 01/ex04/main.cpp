@@ -1,25 +1,43 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+#include <sstream>
+
+static void fixnewline(std::string &s1)
+{
+	size_t pos;
+	std::string news1;
+
+	while ((pos = s1.find("\\n", 0)) != std::string::npos)
+	{
+		news1 += s1.substr(0, pos) + "\n";
+		s1 = s1.substr(pos + 2, s1.length());
+	}
+	news1 += s1.substr(0, s1.length());
+	s1 = news1;
+}
+
 
 static std::string replace(std::ifstream &file, std::string s1, std::string s2)
 {
-	std::string line;
-	std::string newline = "";
+	std::string str;
+	std::string newStr = "";
 	size_t pos;
+	std::stringstream strStream;
+
+	strStream << file.rdbuf();
+	str = strStream.str();
 	
-	while (std::getline(file, line))
+	fixnewline(s1);
+	std::cout << "org file:" << std::endl << str << std::endl;
+	while ((pos = str.find(s1, 0)) != std::string::npos)
 	{
-		if (newline != "")
-			newline += "\n";
-		while ((pos = line.find(s1, 0)) != std::string::npos)
-		{
-			newline += line.substr(0, pos) + s2;
-			line = line.substr(pos + s1.length(), line.length());
-		}
-		newline += line.substr(0, line.length());
+		newStr += str.substr(0, pos) + s2;
+		str = str.substr(pos + s1.length(), str.length());
 	}
-	return (newline);
+	newStr += str.substr(0, str.length());
+	std::cout << "new file:" << std::endl << newStr << std::endl;
+	return (newStr);
 }
 
 static int	initialise(int argc, char **argv, std::ifstream &file, std::ofstream &outfile)

@@ -1,7 +1,7 @@
 NAME = replace
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -g 
-SRCS = main.cpp 
+CFLAGS = -Wall -Wextra -Werror
+SRCS = main.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 # Default target
