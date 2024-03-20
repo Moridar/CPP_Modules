@@ -7,10 +7,7 @@ a = Fixed( 1234.4321f );
 
 std::cout << "a is " << a << std::endl;
 std::cout << "b is " << b << std::endl;
-if (a > b)
-	std::cout << "a is bigger than b: " << std::endl;
-else
-	std::cout << "b is bigger than a" << std::endl;
+std::cout << (a > b ? "a is bigger than b" : "b is bigger than a") << std::endl;
 
 a = 1.5f;
 std::cout << "a is " << a << std::endl;

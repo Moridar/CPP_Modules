@@ -13,7 +13,7 @@ all: $(NAME)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # Link object files into executable
-$(NAME): $(OBJS) $(INCLUDES)
+$(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $^ -o $@
 
 # Clean up object files and executable
