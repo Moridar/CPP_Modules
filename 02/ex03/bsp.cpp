@@ -15,5 +15,6 @@ bool bsp( Point const &a, Point const &b, Point const &c, Point const &point)
 	Fixed area1 = area(point, a, b);
 	Fixed area2 = area(point, b, c);
 	Fixed area3 = area(point, c, a);
-	return (totalArea == area1 + area2 + area3);
+	bool isOnEdge = (area1 == 0 || area2 == 0 || area3 == 0);
+	return (totalArea == area1 + area2 + area3 && !isOnEdge);
 }
