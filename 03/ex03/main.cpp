@@ -48,6 +48,7 @@ int main()
 	DiamondTrap STASSIGN("Dopper");
 	std::cout << std::endl;
 	
+	STASSIGN.attack("a ghost");
 	STASSIGN.takeDamage(10);
 	STASSIGN.beRepaired(5);
 	std::cout << std::endl;
