@@ -3,9 +3,13 @@
 int main()
 {
 	ScavTrap ST1("Topper");
+	std::cout << std::endl;
 	ScavTrap ST2;
+	std::cout << std::endl;
 	ScavTrap ST3(ST1);
+	std::cout << std::endl;
 	ScavTrap ST4;
+	std::cout << std::endl;
 	ST4 = ST3;
 
 	std::cout << std::endl << "ST1 " << ST1.name() << " actions" << std::endl;
@@ -25,5 +29,6 @@ int main()
 	ST4.beRepaired(5);
 	ST4.attack("CT B");
 	ST4.guardGate();
+	std::cout << std::endl;
 	return (0);
 }

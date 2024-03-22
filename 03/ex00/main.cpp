@@ -13,7 +13,7 @@ int main()
 	ctA.attack("a door");
 	ctA.beRepaired(5);
 	ctB.attack("CT A");
-	ctA.takeDamage(0);
+	ctB.takeDamage(0);
 
 	ctB = ClapTrap("CT B");
 	ctB.attack("a torch");
