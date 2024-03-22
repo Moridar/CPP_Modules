@@ -67,38 +67,3 @@ void ClapTrap::beRepaired(unsigned int amount)
 	_hp += amount;
 	std::cout << "ClapTrap " << _name << " got repaired, " << amount << " points of health restored!" << std::endl;
 }
-
-unsigned int ClapTrap::hp()
-{
-	return (_hp);
-}
-
-unsigned int ClapTrap::ep()
-{
-	return (_ep);
-}
-
-unsigned int ClapTrap::ad()
-{
-	return (_ad);
-}
-
-std::string ClapTrap::name()
-{
-	return (_name);
-}
-
-void ClapTrap::setHp(unsigned int hp)
-{
-	_hp = hp;
-}
-
-void ClapTrap::setEp(unsigned int ep)
-{
-	_ep = ep;
-}
-
-void ClapTrap::setAd(unsigned int ad)
-{
-	_ad = ad;
-}

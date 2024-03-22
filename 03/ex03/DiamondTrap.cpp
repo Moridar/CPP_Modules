@@ -1,16 +1,17 @@
 #include "DiamondTrap.hpp"
 
-DiamondTrap::DiamondTrap() : ClapTrap("No Name_clap_name")
+DiamondTrap::DiamondTrap()
 {
+	ClapTrap::_name = "No Name_clap_name";
 	_name = "No Name";
-	setEp(50);
+	_ep = 50;
 	std::cout << "DiamondTrap default constructor" << std::endl;
 }
 
 DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name")
 {
 	_name = name;
-	setEp(50);
+	_ep = 50;
 	std::cout << "DiamondTrap name constructor" << std::endl;
 }
 
@@ -41,10 +42,5 @@ void DiamondTrap::attack(const std::string& target)
 void DiamondTrap::whoAmI()
 {
 	std::cout << "DiamondTrap name: " << _name << std::endl;
-	std::cout << "ClapTrap name: " << ClapTrap::name() << std::endl;
-}
-
-std::string DiamondTrap::name() const
-{
-	return (_name);
+	std::cout << "ClapTrap name: " << ClapTrap::_name << std::endl;
 }
