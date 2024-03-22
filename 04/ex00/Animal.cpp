@@ -14,6 +14,7 @@ Animal::Animal(std::string type) : type(type)
 {
 	std::cout << "Animal Type Constructor" << std::endl;
 }
+
 Animal::Animal(const Animal &animal) : type(animal.type)
 {
 	std::cout << "Animal Copy Constructor" << std::endl;
@@ -31,7 +32,7 @@ std::string Animal::getType() const
 	return type;
 }
 
-void Animal::makeSound()
+void Animal::makeSound() const
 {
 	std::cout << " [Unknown sound from some animal] " << std::endl;
 }

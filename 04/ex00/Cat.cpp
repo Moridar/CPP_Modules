@@ -17,12 +17,12 @@ Cat::Cat(const Cat &cat) : Animal(cat)
 
 Cat &Cat::operator=(const Cat &cat)
 {
-	Animal::operator=(cat);
+	type = cat.type;
 	std::cout << "Cat Assignment Constructor" << std::endl;
 	return (*this);
 }
 
-void Cat::makeSound()
+void Cat::makeSound() const
 {
-	std::cout << "[Meow meow]" << std::endl;
+	std::cout << " [Meow meow]" << std::endl;
 }

@@ -17,12 +17,12 @@ Dog::Dog(const Dog &dog) : Animal(dog)
 
 Dog &Dog::operator=(const Dog &dog)
 {
-	Animal::operator=(dog);
+	type = dog.type;
 	std::cout << "Dog Assignment Constructor" << std::endl;
 	return (*this);
 }
 
-void Dog::makeSound()
+void Dog::makeSound() const
 {
-	std::cout << "[Bark bark]" << std::endl;
+	std::cout << " [Bark bark]" << std::endl;
 }
