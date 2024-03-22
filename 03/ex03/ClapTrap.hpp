@@ -19,9 +19,9 @@ class ClapTrap
 		void attack(const std::string& target);
 		void takeDamage(unsigned int amount);
 		void beRepaired(unsigned int amount);
-		unsigned int hp();
-		unsigned int ep();
-		unsigned int ad();
+		unsigned int hp() const;
+		unsigned int ep() const;
+		unsigned int ad() const;
 		std::string name();
 		void setHp(unsigned int hp);
 		void setEp(unsigned int ep);

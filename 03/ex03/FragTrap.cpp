@@ -22,7 +22,6 @@ FragTrap::FragTrap(std::string name) : ClapTrap(name)
 FragTrap::FragTrap(const FragTrap &fragtrap) : ClapTrap(fragtrap)
 {
 	std::cout << "FragTrap copy constructor " << name() << std::endl;
-	initTrap(*this);
 }
 
 FragTrap &FragTrap::operator=(const FragTrap &fragtrap)
@@ -39,5 +38,5 @@ FragTrap::~FragTrap()
 
 void FragTrap::highFivesGuys()
 {
-	std::cout << "FragTrap " << name() << " raised its hand up, requesting a high five, anyone?!" << std::endl;
+	std::cout << "FragTrap " << name() << " raises its hand, requesting a high five, anyone?!" << std::endl;
 }

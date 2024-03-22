@@ -1,24 +1,20 @@
 #include "DiamondTrap.hpp"
 
-DiamondTrap::DiamondTrap() : ClapTrap("No Name_clap_name"), ScavTrap(), FragTrap()
+DiamondTrap::DiamondTrap() : ClapTrap("No Name_clap_name")
 {
 	_name = "No Name";
-	setHp(FragTrap::hp());
-	setEp(ScavTrap::ep());
-	setAd(FragTrap::ad());
+	setEp(50);
 	std::cout << "DiamondTrap default constructor" << std::endl;
 }
 
-DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"), ScavTrap(), FragTrap()
+DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name")
 {
 	_name = name;
-	setHp(FragTrap::hp());
-	setEp(ScavTrap::ep());
-	setAd(FragTrap::ad());
+	setEp(50);
 	std::cout << "DiamondTrap name constructor" << std::endl;
 }
 
-DiamondTrap::DiamondTrap(const DiamondTrap &diamondtrap) : ClapTrap(diamondtrap._name + "_clap_name"), ScavTrap(diamondtrap), FragTrap(diamondtrap)
+DiamondTrap::DiamondTrap(const DiamondTrap &diamondtrap) : ClapTrap(diamondtrap), ScavTrap(diamondtrap), FragTrap(diamondtrap)
 {
 	_name = diamondtrap._name;
 	std::cout << "DiamondTrap copy constructor" << std::endl;

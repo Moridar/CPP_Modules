@@ -3,10 +3,16 @@
 int main()
 {
 	FragTrap ST1("Topper");
-	FragTrap ST2("Bopper");
-	FragTrap ST3(ST1);
-	FragTrap ST4;
+	std::cout << std::endl;
 	
+	FragTrap ST2("Bopper");
+	std::cout << std::endl;
+	
+	FragTrap ST3(ST1);
+	std::cout << std::endl;
+	
+	FragTrap ST4;
+	std::cout << std::endl;
 
 	std::cout << std::endl << "ST1 " << ST1.name() << " actions" << std::endl;
 	ST1.attack("a mouse");
