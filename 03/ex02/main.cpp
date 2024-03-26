@@ -2,17 +2,17 @@
 
 int main()
 {
+	std::cout << std::endl << "==Constructor 1==" << std::endl;
 	FragTrap ST1("Topper");
-	std::cout << std::endl;
 	
+	std::cout << std::endl << "==Constructor 2==" << std::endl;
 	FragTrap ST2("Bopper");
-	std::cout << std::endl;
 	
+	std::cout << std::endl << "==Copy Constructor==" << std::endl;
 	FragTrap ST3(ST1);
-	std::cout << std::endl;
 	
+	std::cout << std::endl << "==Default Constructor==" << std::endl;
 	FragTrap ST4;
-	std::cout << std::endl;
 
 	std::cout << std::endl << "ST1 actions " << std::endl;
 	ST1.attack("a mouse");
@@ -35,7 +35,7 @@ int main()
 	ST4.attack("CT B");
 	ST4.highFivesGuys();
 
-	std::cout << std::endl;
+	std::cout << std::endl << "==Copy Assignment==" << std::endl;
 	ST4 = ST2;
 
 	std::cout << std::endl << "ST4 actions" << std::endl;
