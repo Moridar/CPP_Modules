@@ -2,8 +2,8 @@
 
 Cat::~Cat() 
 {
-	std::cout << "Cat Deconstructor" << std::endl;
 	delete brain;
+	std::cout << "Cat Deconstructor" << std::endl;
 }
 
 Cat::Cat() : Animal("Cat")

@@ -2,8 +2,8 @@
 
 Dog::~Dog() 
 {
-	std::cout << "Dog Deconstructor" << std::endl;
 	delete brain;
+	std::cout << "Dog Deconstructor" << std::endl;
 }
 
 Dog::Dog() : Animal("Dog")

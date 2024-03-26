@@ -32,6 +32,8 @@ MateriaTrash &MateriaTrash::operator=(const MateriaTrash &materia)
 
 void MateriaTrash::add(AMateria *materia)
 {
+	if (!materia)
+		return ;
 	if (!_materia)
 	{
 		_materia = materia;

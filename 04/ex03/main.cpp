@@ -9,6 +9,7 @@ int main()
 	IMateriaSource* src = new MateriaSource();
 	src->learnMateria(new Ice());
 	src->learnMateria(new Cure());
+	src->learnMateria(NULL);
 	ICharacter* me = new Character("me");
 	AMateria* tmp;
 	
@@ -19,13 +20,19 @@ int main()
 	me->equip(tmp);
 	tmp = src->createMateria("cure");
 	me->equip(tmp);
+	tmp = NULL;
+	me->equip(tmp);
+	
 	ICharacter* bob = new Character("bob");
+
 	std::cout << std::endl << "==Using materias==" << std::endl;
 	me->use(0, *bob);
 	me->use(1, *bob);
+
 	std::cout << std::endl << "==Unequipping==" << std::endl;
 	me->unequip(1);
 	me->unequip(0);
+
 	std::cout << std::endl << "==Deleting==" << std::endl;
 	delete bob;
 	delete me;

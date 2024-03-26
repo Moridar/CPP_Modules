@@ -39,7 +39,7 @@ MateriaSource &MateriaSource::operator=(const MateriaSource &materiaSource)
 
 void MateriaSource::learnMateria(AMateria *materia)
 {
-	if (count == 4)
+	if (materia == NULL || count == 4)
 		return;
 	for (int i = 0; i < 4; i++)
 	{
