@@ -4,6 +4,7 @@ Character::Character(std::string name) : _name(name)
 {
 	for (int i = 0; i < 4; i++)
 		_inventory[i] = NULL;
+	_mt = new MateriaTrash();
 }
 
 Character::~Character()
@@ -12,10 +13,11 @@ Character::~Character()
 	{
 		if (_inventory[i])
 		{
-			std::cout << this->_name << " deleted materia [" << i << "]: " << _inventory[i]->getType() << std::endl; 
+			std::cout << "Deleting materia[" << i << "]: " << _inventory[i]->getType() << " from " << _name << std::endl; 
 			delete _inventory[i];
 		}
 	}
+	delete _mt;
 }
 
 Character::Character(const Character &character)
@@ -48,6 +50,7 @@ void Character::equip(AMateria *m)
 	{
 		if (!_inventory[i])
 		{
+			std::cout << _name << " is equipping on slot " << i << ": " << m->getType() << std::endl;
 			_inventory[i] = m;
 			break;
 		}
@@ -58,6 +61,8 @@ void Character::unequip(int idx)
 {
 	if (idx < 0 || idx >= 4 || !_inventory[idx])
 		return;
+	std::cout << "Unequipping " << _inventory[idx]->getType() << " from " << _name << std::endl;
+	_mt->add(_inventory[idx]);
 	_inventory[idx] = NULL;
 }
 

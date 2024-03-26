@@ -45,6 +45,7 @@ void MateriaSource::learnMateria(AMateria *materia)
 	{
 		if (!materias[i])
 		{
+			std::cout << "MateriaSource learned on slot " << i << ": " << materia->getType() << std::endl;
 			materias[i] = materia;
 			count++;
 			break;
@@ -57,7 +58,10 @@ AMateria *MateriaSource::createMateria(std::string const &type)
 	for (int i = 0; i < 4; i++)
 	{
 		if (materias[i] && materias[i]->getType() == type)
+		{
+			std::cout << "Found " << type << " from MateriaSource, giving a copy" << std::endl;
 			return (materias[i]->clone());
+		}
 	}
 	return (NULL);
 }

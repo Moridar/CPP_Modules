@@ -3,12 +3,14 @@
 
 #include "ICharacter.hpp"
 #include "AMateria.hpp"
+#include "MateriaTrash.hpp"
 
 class Character : public ICharacter
 {
 	private:
 		std::string _name;
 		AMateria *_inventory[4];
+		MateriaTrash *_mt;
 	public:
 		Character(std::string name);
 		~Character();
