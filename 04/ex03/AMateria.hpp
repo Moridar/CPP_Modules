@@ -13,7 +13,7 @@ class AMateria
 		AMateria(std::string const & type);
 		virtual ~AMateria();
 		AMateria(const AMateria &amateria);
-		AMateria &operator=(const AMateria &amateria);
+		virtual AMateria &operator=(const AMateria &amateria);
 		
 		std::string const & getType() const; //Returns the materia type
 		
