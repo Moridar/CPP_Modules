@@ -1,23 +1,21 @@
 #include "Dog.hpp"
 
-Dog::~Dog() 
+Dog::~Dog()
 {
 	delete brain;
 	std::cout << "Dog Deconstructor" << std::endl;
 }
 
-Dog::Dog() : Animal("Dog")
+Dog::Dog() : Animal("Dog"), brain(new Brain())
 {
 	std::cout << "Dog Default Constructor" << std::endl;
-	brain = new Brain();
 	for (int i = 0; i < 100; i++)
 		brain->setIdea(i, std::to_string(i) + " Bark bark I am humans best friend");
 }
 
-Dog::Dog(const Dog &dog) : Animal(dog)
+Dog::Dog(const Dog &dog) : Animal(dog), brain(new Brain(*dog.brain))
 {
 	std::cout << "Dog Copy Constructor" << std::endl;
-	brain = new Brain(*dog.brain);
 }
 
 Dog &Dog::operator=(const Dog &dog)

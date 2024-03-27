@@ -1,16 +1,16 @@
 #include "Character.hpp"
 
-Character::Character() : Character("no name") 
+Character::Character() 
 {
-		std::cout << "Char Default Constructor" << std::endl;
+	std::cout << "Char Default Constructor" << std::endl;
+	Character("no name");
 }
 
-Character::Character(std::string name) : _name(name)
+Character::Character(std::string name) : _name(name), _mt(new MateriaTrash())
 {
 	std::cout << "Char Name Constructor" << std::endl;
 	for (int i = 0; i < 4; i++)
 		_inventory[i] = NULL;
-	_mt = new MateriaTrash();
 }
 
 Character::~Character()
@@ -26,12 +26,9 @@ Character::~Character()
 	delete _mt;
 }
 
-Character::Character(const Character &character)
+Character::Character(const Character &character) : _name(character._name), _mt(new MateriaTrash(*character._mt))
 {
 	std::cout << "Char Copy Constructor" << std::endl;
-	_mt = new MateriaTrash(*character._mt);
-	_name = character._name;
-	std::cout << "Char copying inventory" << std::endl;
 	for (int i = 0; i < 4; i++)
 		if(character._inventory[i])
 			_inventory[i] = character._inventory[i]->clone();

@@ -6,18 +6,16 @@ Cat::~Cat()
 	std::cout << "Cat Deconstructor" << std::endl;
 }
 
-Cat::Cat() : Animal("Cat")
+Cat::Cat() : Animal("Cat"), brain(new Brain())
 {
 	std::cout << "Cat Default Constructor" << std::endl;
-	brain = new Brain();
 	for (int i = 0; i < 100; i++)
 		brain->setIdea(i, i + " Meow meow I am a cat");
 }
 
-Cat::Cat(const Cat &cat) : Animal(cat)
+Cat::Cat(const Cat &cat) : Animal(cat), brain(new Brain(*cat.brain))
 {
 	std::cout << "Cat Copy Constructor" << std::endl;
-	brain = new Brain(*cat.brain);
 }
 
 Cat &Cat::operator=(const Cat &cat)
