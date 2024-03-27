@@ -19,14 +19,17 @@ MateriaTrash::~MateriaTrash()
 
 MateriaTrash::MateriaTrash(const MateriaTrash &Materia)
 {
+	std::cout << "Trash Copy Constructor" << std::endl;
 	*this = Materia;
 }
 
 MateriaTrash &MateriaTrash::operator=(const MateriaTrash &materia)
 {
-	
-	_materia = materia._materia;
-	_next = materia._next;
+	std::cout << "Trash Assignment Operator" << std::endl;
+	if (materia._materia)
+		_materia = materia._materia->clone();
+	if (materia._next)
+			this->_next = materia._next;
 	return *this;
 }
 

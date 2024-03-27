@@ -1,7 +1,13 @@
 #include "Character.hpp"
 
+Character::Character() : Character("no name") 
+{
+		std::cout << "Char Default Constructor" << std::endl;
+}
+
 Character::Character(std::string name) : _name(name)
 {
+	std::cout << "Char Name Constructor" << std::endl;
 	for (int i = 0; i < 4; i++)
 		_inventory[i] = NULL;
 	_mt = new MateriaTrash();
@@ -22,11 +28,18 @@ Character::~Character()
 
 Character::Character(const Character &character)
 {
-	*this = character;
+	std::cout << "Char Copy Constructor" << std::endl;
+	_mt = new MateriaTrash(*character._mt);
+	_name = character._name;
+	std::cout << "Char copying inventory" << std::endl;
+	for (int i = 0; i < 4; i++)
+		if(character._inventory[i])
+			_inventory[i] = character._inventory[i]->clone();
 }
 
 Character &Character::operator=(const Character &character)
 {
+	std::cout << "Char Assignment Operator" << std::endl;
 	if (this == &character)
 		return (*this);
 	_name = character._name;
@@ -34,8 +47,11 @@ Character &Character::operator=(const Character &character)
 	{
 		if (_inventory[i])
 			delete _inventory[i];
-		_inventory[i] = character._inventory[i]->clone();
+		if (character._inventory[i])
+			_inventory[i] = character._inventory[i]->clone();
 	}
+	delete _mt;
+	_mt = new MateriaTrash(*character._mt);
 	return (*this);
 }
 

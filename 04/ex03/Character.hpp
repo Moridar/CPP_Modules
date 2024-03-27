@@ -12,6 +12,7 @@ class Character : public ICharacter
 		AMateria *_inventory[4];
 		MateriaTrash *_mt;
 	public:
+		Character();
 		Character(std::string name);
 		~Character();
 		Character(const Character &character);
