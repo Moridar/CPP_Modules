@@ -1,9 +1,8 @@
 #include "Character.hpp"
 
-Character::Character() 
+Character::Character() : Character("no name")
 {
 	std::cout << "Char Default Constructor" << std::endl;
-	Character("no name");
 }
 
 Character::Character(std::string name) : _name(name), _mt(new MateriaTrash())
@@ -32,6 +31,8 @@ Character::Character(const Character &character) : _name(character._name), _mt(n
 	for (int i = 0; i < 4; i++)
 		if(character._inventory[i])
 			_inventory[i] = character._inventory[i]->clone();
+		else
+			_inventory[i] = NULL;
 }
 
 Character &Character::operator=(const Character &character)
@@ -44,11 +45,11 @@ Character &Character::operator=(const Character &character)
 	{
 		if (_inventory[i])
 			delete _inventory[i];
+		_inventory[i] = NULL;
 		if (character._inventory[i])
 			_inventory[i] = character._inventory[i]->clone();
 	}
-	delete _mt;
-	_mt = new MateriaTrash(*character._mt);
+	*_mt = *character._mt;
 	return (*this);
 }
 
@@ -67,9 +68,10 @@ void Character::equip(AMateria *m)
 		{
 			std::cout << _name << " is equipping on slot " << i << ": " << m->getType() << std::endl;
 			_inventory[i] = m;
-			break;
+			return;
 		}
 	}
+	delete m;
 }
 
 void Character::unequip(int idx)

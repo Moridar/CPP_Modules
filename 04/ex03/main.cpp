@@ -31,13 +31,26 @@ int main()
 
 	std::cout << std::endl << "==Unequipping one materia, sets it in trash to be copied/assigned==" << std::endl;
 	me->unequip(2);
-	me->unequip(5);
+	me->unequip(1);
+	me->unequip(5); //nothing happens, 5 doesn't exist
+
+	//me has 2 cure in trash
+	//me has equipped 1 ice at slot 0
 
 	std::cout << std::endl << "==Copying character==" << std::endl;
 	Character* copy = new Character(*me);
 
-	std::cout << std::endl << "==Assign character==" << std::endl;
+	std::cout << std::endl << "==Assign character prepare==" << std::endl;
 	Character* meass = new Character();
+	meass->equip(src->createMateria("ice"));
+	meass->equip(src->createMateria("cure"));
+	meass->unequip(0);
+	meass->unequip(1);
+	meass->equip(src->createMateria("ice"));
+	meass->equip(src->createMateria("cure"));
+	meass->equip(src->createMateria("cure"));
+
+	std::cout << std::endl << "==Assign character==" << std::endl;
 	*meass = *me;
 
 	
@@ -45,13 +58,13 @@ int main()
 	copy->use(0, *bob);
 	copy->equip(src->createMateria("ice"));
 	copy->use(2, *bob);
-	copy->unequip(2);
+	copy->unequip(1);
 	
 	std::cout << std::endl << "==Assigned actions==" << std::endl;
 	meass->use(0, *bob);
 	meass->equip(src->createMateria("ice"));
 	meass->use(2, *bob);
-	meass->unequip(2);
+	meass->unequip(1);
 
 	std::cout << std::endl << "==Unequipping==" << std::endl;
 	me->unequip(1);
