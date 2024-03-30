@@ -1,5 +1,4 @@
 #include "Ice.hpp"
-#include <iostream>
 
 Ice::Ice() : AMateria("ice") {}
 
@@ -9,7 +8,8 @@ Ice::Ice(const Ice &ice) : AMateria(ice) {}
 
 Ice &Ice::operator=(const Ice &ice) 
 {
-	this->_type = ice._type;
+    std::cout << "Ice Assignment Operator" << std::endl;
+    AMateria::operator=(ice);
     return (*this);
 }
 

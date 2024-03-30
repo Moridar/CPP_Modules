@@ -6,10 +6,11 @@ Cure::~Cure() {}
 
 Cure::Cure(const Cure &cure) : AMateria(cure) {}
 
-Cure &Cure::operator=(const Cure &cure)
-{
-	this->_type = cure._type;
-	return (*this);
+Cure &Cure::operator=(const Cure &cure) 
+{	
+	std::cout << "Cure Assignment Operator" << std::endl;
+    AMateria::operator=(cure);
+    return (*this);
 }
 
 AMateria *Cure::clone() const

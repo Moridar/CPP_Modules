@@ -27,8 +27,6 @@ MateriaTrash::MateriaTrash(const MateriaTrash &Materia)
 		_materia = Materia._materia->clone();
 	if (Materia._next)
 		_next = new MateriaTrash(*Materia._next);
-	
-	//*this = Materia;
 }
 
 MateriaTrash &MateriaTrash::operator=(const MateriaTrash &materia)

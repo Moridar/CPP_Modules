@@ -9,6 +9,9 @@ int main()
 	IMateriaSource* src = new MateriaSource();
 	src->learnMateria(new Ice());
 	src->learnMateria(new Cure());
+	src->learnMateria(new Cure());
+	src->learnMateria(new Cure());
+	src->learnMateria(new Cure());
 	src->learnMateria(NULL);
 	Character* me = new Character("me");
 	AMateria* tmp;
@@ -34,8 +37,8 @@ int main()
 	me->unequip(1);
 	me->unequip(5); //nothing happens, 5 doesn't exist
 
-	//me has 2 cure in trash
-	//me has equipped 1 ice at slot 0
+	//Unequipped 2x Cure
+	//Equppied Ice on Slot 0
 
 	std::cout << std::endl << "==Copying character==" << std::endl;
 	Character* copy = new Character(*me);
