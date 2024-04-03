@@ -1,6 +1,6 @@
 NAME = a.out
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++11 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -std=c++11 
 SRCS = AMateria.cpp Character.cpp Cure.cpp Ice.cpp MateriaSource.cpp MateriaTrash.cpp main.cpp 
 OBJS = $(SRCS:.cpp=.o)
 

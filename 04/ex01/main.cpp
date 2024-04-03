@@ -12,7 +12,7 @@ std::cout << "b: " << b->getIdea(0) << std::endl;
 std::cout << "b1:" << b1->getIdea(0) << std::endl;
 
 b->setIdea(1, "My second idea is to test copy assignment");
-b1->setIdea(0, "");
+b->setIdea(0, "");
 *b1 = *b;
 
 std::cout << "b1:" << b1->getIdea(0) << std::endl;
