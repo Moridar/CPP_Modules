@@ -56,8 +56,6 @@ Dog *d2 = new Dog();
 *d2 = *d;
 
 d->setIdea(0, "d's idea");
-d1->setIdea(0, "d1's idea");
-d2->setIdea(0, "d2's idea");
 std::cout << std::endl << "==5.4 Ideas ==" << std::endl;
 std::cout << "d idea: " << d->getIdea(0) << std::endl;
 std::cout << "d1 idea: " << d1->getIdea(0) << std::endl;
@@ -84,8 +82,6 @@ Cat *c2 = new Cat();
 *c2 = *c;
 
 c->setIdea(0, "c's idea");
-c1->setIdea(0, "c1's idea");
-c2->setIdea(0, "c2's idea");
 std::cout << std::endl << "==6.4 Ideas ==" << std::endl;
 std::cout << "c idea: " << c->getIdea(0) << std::endl;
 std::cout << "c1 idea: " << c1->getIdea(0) << std::endl;

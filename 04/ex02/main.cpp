@@ -20,7 +20,8 @@ for (int i = 0; i < N; i++)
 std::cout << std::endl << "==3. Deleting the animals==" << std::endl;
 for (Animal *animal : animals)
 	delete animal;
-return 0;
 
 std::cout << std::endl << "==4. Test default Animal==" << std::endl;
+// Animal *a = new Animal();
+return 0;
 }
