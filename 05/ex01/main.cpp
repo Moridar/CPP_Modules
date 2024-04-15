@@ -28,6 +28,15 @@ int main()
 		{
 			std::cout << e.what() << std::endl;
 		}
+		try
+		{
+			Form f4("f4", 151, 151);
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << std::endl;
+		}
+		
 
 		std::cout << std::endl << "==4. Signing forms==" << std::endl;
 		try
