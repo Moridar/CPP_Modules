@@ -25,6 +25,16 @@ int main()
 		std::cout << "f3: " << f3 << std::endl;
 		std::cout << "unsignedform: " << unsignedform << std::endl;
 
+		std::cout << std::endl << "==2..1 Default Form==" << std::endl;
+		PresidentialPardonForm f4;
+		std::cout << "f4: " << f4 << std::endl;
+		std::cout << std::endl << "==2..2 Copy Form==" << std::endl;
+		PresidentialPardonForm f5(f1);
+		std::cout << "f5: " << f5 << std::endl;
+		std::cout << std::endl << "==2..3 Assignation Form==" << std::endl;
+		f4 = f5;
+		std::cout << "f4: " << f4 << std::endl;
+
 		std::cout << std::endl << "==3. Signing Forms==" << std::endl;
 		try
 		{

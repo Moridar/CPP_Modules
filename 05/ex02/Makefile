@@ -13,7 +13,7 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm Home_shrubbery
+	rm -f Home_shrubbery
 	rm -f $(OBJS)
 
 fclean: clean
