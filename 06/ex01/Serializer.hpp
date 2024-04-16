@@ -2,7 +2,6 @@
 #define SERIALIZER_HPP
 
 #include <string>
-#include <iostream>
 
 typedef struct s_data
 {
