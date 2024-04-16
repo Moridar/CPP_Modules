@@ -1,166 +1,100 @@
 #include "ScalarConverter.hpp"
-#include <cmath>
 
 static char getType(std::string str)
 {
-	int i = 0;
 	int dot = 0;
-
-	if (str[i] == '-' || str[i] == '+')
-		i++;
-	while (str[i])
-	{
-		if (str.at(i) == '.')
-		{
-			if (++dot > 1)
-				return (0);
-		}
-		else if (!isdigit(str.at(i)))
-		{
-			if (str.at(i) == 'f' && i == (int) str.length() - 1 && dot == 1)
-			    return ('f');
-			return (0);
-		}	
-		i++;
-	}
-	if (!dot)
-		return ('i');
-	return ('d');
+	
+	if (str.length() == 1 && !isdigit(str[0]))
+		return ('c');
+	int i = str[0] == '-' || str[0] == '+' ? 1 : 0;
+	while (isdigit(str[i]))
+		dot += str.at(i++) == '.';
+	if (dot > 1)
+		throw std::invalid_argument("Impossible type: Multiple decimal points");
+	if (std::tolower(str[i]) == 'f' && str[i + 1] == 0)
+		return ('f');
+	if (str[i] && !isdigit(str[i]) && str[i] != '.')
+			throw std::invalid_argument("Impossible type: Invalid character in string");
+	return dot ? 'd' : 'i';
 }
 
-static void printc(char c)
+static void print(char c, int i, float f, double d)
 {
-	if (isprint(c))
-		std::cout << "char: " << c << std::endl;
-	else
-		std::cout << "char: Non displayable" << std::endl;
+	std::cout << "char: " << (std::isinf(d) || std::isnan(d) ? "Impossible"
+		: (isprint(c) ? &c : "Non displayable")) << std::endl;	
+	std::cout << "int: " << (std::isinf(d) || std::isnan(d) ? "Impossible"
+		: d < INT32_MIN || d > INT32_MAX ? "Overflow" : std::to_string(i)) << std::endl;
+	std::cout << std::fixed << std::setprecision(1);
+	std::cout << "float: " << f << "f" << std::endl;
+	std::cout << "double: " << d << std::endl;
 }
 
-static void printnan()
-{
-	std::cout << "char: impossible" << std::endl;
-	std::cout << "int: impossible" << std::endl;
-	std::cout << "float: nanf" << std::endl;
-	std::cout << "double: nan" << std::endl;
-}
-
-static void printinf()
-{
-	std::cout << "char: impossible" << std::endl;
-	std::cout << "int: impossible" << std::endl;
-	std::cout << "float: inff" << std::endl;
-	std::cout << "double: inf" << std::endl;
-}
-
-static void printneginf()
-{
-	std::cout << "char: impossible" << std::endl;
-	std::cout << "int: impossible" << std::endl;
-	std::cout << "float: -inff" << std::endl;
-	std::cout << "double: -inf" << std::endl;
-}
-static void print(char c)
-{
-	printc(c);
-	std::cout << "int: " << static_cast<int>(c) << std::endl;
-	std::cout << "float: " << static_cast<float>(c) << ".0f" << std::endl;
-	std::cout << "double: " << static_cast<double>(c) << ".0" << std::endl;
-}
-static void print(int i)
-{
-	printc(static_cast<char>(i));
-	std::cout << "int: " << static_cast<int>(i) << std::endl;
-	std::cout << "float: " << static_cast<float>(i) << ".0f" << std::endl;
-	std::cout << "double: " << static_cast<double>(i) << ".0" << std::endl;
-}
-static void print(double d)
-{
-	if (std::isnan(d))
-		return (printnan());
-	if (std::isinf(d))
-	{
-		if (std::signbit(d))
-			return (printneginf());
-		return (printinf());
-	}
-	printc(static_cast<char>(d));
-	if (d > INT32_MAX || d < INT32_MIN)
-		std::cout << "int: overflows" << std::endl;
-	else
-		std::cout << "int: " << static_cast<int>(d) << std::endl;
-	std::cout << "float: " << static_cast<float>(d) << "f" << std::endl;
-	std::cout << "double: " << static_cast<double>(d) << std::endl;
-}
-
-static void print(float f)
-{
-	print((double) f);
-}
 void ScalarConverter::convert(std::string str)
 {
-	if (str == "nan" || str == "inf" || str == "+inf" || str == "-inf")
+	char	c = 0;
+	int		i = 0;
+	float	f;
+	double	d;
+	
+	f = d = str == "nan" || str == "nanf" ? NAN
+		: str == "inf" || str == "+inf" || str == "inff" || str == "+inff" ? INFINITY
+		: str == "-inff" || str == "-inf" ? -INFINITY : 0;
+	try
 	{
-		double d;
-		if (str == "nan")
-			d = NAN;
-		else if (str == "-inf")
-			d = -INFINITY;
-		else
-			d = INFINITY;
-		print(d);
-		return ;
-	}
-	if (str == "nanf" || str == "inff" || str == "+inff" || str == "-inff")
-	{
-		float f;
-		if (str == "nanf")
-			f = NAN;
-		else if (str == "-inff")
-			f = -INFINITY;
-		else
-			f = INFINITY;
-		print(f);
-		return ;
-	}
-	if (str.length() == 1 && !isdigit(str[0]))
-	{
-		print(str.at(0));
-		return ;
-	}
-	char type = getType(str);
-	if (type == 0)
-		std::cout << "Impossible type" << std::endl;
-	if (type == 'd')
-	{
-		try
+		char type = d == 0 ? getType(str) : 0;
+		if (type == 'c')
 		{
-			print(std::stod(str));
+			c = str.at(0);
+			i = static_cast<int>(c);
+			f = static_cast<float>(c);
+			d = static_cast<double>(c);
 		}
-		catch(const std::exception& e)
+		if (type == 'd')
 		{
-			std::cerr << "Double overflows" << std::endl;
+			try
+			{
+				d = std::stod(str);
+				c = static_cast<char>(d);
+				i = static_cast<int>(d);
+				f = static_cast<float>(d);
+			}
+			catch(const std::exception& e)
+			{
+				throw std::runtime_error("Double overflows");
+			}
+		}
+		if (type == 'f')
+		{
+			try
+			{
+				f = std::stof(str);
+				c = static_cast<char>(f);
+				i = static_cast<int>(f);
+				d = static_cast<double>(f);
+			}
+			catch(const std::exception& e)
+			{
+				throw std::runtime_error("Float overflows");
+			}
+		}
+		if (type == 'i')
+		{
+			try
+			{
+				i = std::stoi(str);
+				c = static_cast<char>(i);
+				f = static_cast<float>(i);
+				d = static_cast<double>(i);
+			}
+			catch(const std::exception& e)
+			{
+				throw std::runtime_error("Integer overflows");
+			}		
 		}
 	}
-	if (type == 'f')
+	catch(const std::exception& e)
 	{
-		try
-		{
-			print(std::stof(str));
-		}
-		catch(const std::exception& e)
-		{
-			std::cerr << "Float overflows" << std::endl;
-		}
+		return (std::cerr << e.what() << std::endl, void());
 	}
-	if (type == 'i')
-	{
-		try
-		{
-			print(std::stoi(str));
-		}
-		catch(const std::exception& e)
-		{
-			std::cerr << "Integer overflows" << '\n';
-		}		
-	}
+	print(c, i, f, d);
 }
