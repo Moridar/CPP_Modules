@@ -7,15 +7,15 @@ static char getType(std::string str)
 	if (str.length() == 1 && !isdigit(str[0]))
 		return ('c');
 	int i = str[0] == '-' || str[0] == '+' ? 1 : 0;
-	while (isdigit(str[i]))
+	while (isdigit(str[i]) || str[i] == '.')
 		dot += str.at(i++) == '.';
 	if (dot > 1)
 		throw std::invalid_argument("Impossible type: Multiple decimal points");
 	if (std::tolower(str[i]) == 'f' && str[i + 1] == 0)
 		return ('f');
 	if (str[i] && !isdigit(str[i]) && str[i] != '.')
-			throw std::invalid_argument("Impossible type: Invalid character in string");
-	return dot ? 'd' : 'i';
+		throw std::invalid_argument("Impossible type: Invalid character in string");
+	return (dot ? 'd' : 'i');
 }
 
 static void print(char c, int i, float f, double d)
