@@ -20,18 +20,21 @@ int main()
 	std::cout << *rrf << std::endl;
 	delete rrf;
 
-	std::cout << std::endl << "==3. Presidental Pardon Form" << std::endl;
+	std::cout << std::endl << "==3. Presidential Pardon Form" << std::endl;
 	rrf = someRandomIntern.makeForm("presidential pardon", "Bender");
-	
-	std::cout << std::endl << "==3.1 Status" << std::endl;
-	std::cout << *rrf << std::endl;
-	std::cout << std::endl << "==3.3 Sign" << std::endl;
-	b1.signForm(*rrf);
-	std::cout << std::endl << "==3.4 Execute" << std::endl;
-	b2.executeForm(*rrf);
-	b3.executeForm(*rrf);
-	std::cout << std::endl << "==3.5 Delete" << std::endl;
-	delete rrf;
+	if (rrf)
+	{
+		std::cout << std::endl << "==3.1 Status" << std::endl;
+		std::cout << *rrf << std::endl;
+		
+		std::cout << std::endl << "==3.3 Sign" << std::endl;
+		b1.signForm(*rrf);
+		std::cout << std::endl << "==3.4 Execute" << std::endl;
+		b2.executeForm(*rrf);
+		b3.executeForm(*rrf);
+		std::cout << std::endl << "==3.5 Delete" << std::endl;
+		delete rrf;
+	}
 
 	std::cout << std::endl << "==4. Nonexisting Form" << std::endl;
 	rrf = someRandomIntern.makeForm("nonexisting form", "Bender");

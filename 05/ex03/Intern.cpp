@@ -24,40 +24,12 @@ Intern &Intern::operator=(const Intern &Intern)
 	return *this;
 }
 
-AForm* Intern::createPresidentialPardonForm(std::string target)
-{
-	return new PresidentialPardonForm(target);
-}
-
-AForm* Intern::createRobotomyRequestForm(std::string target)
-{
-	return new RobotomyRequestForm(target);
-}
-
-AForm *Intern::createShrubberyCreationForm(std::string target)
-{
-	return new ShrubberyCreationForm(target);
-}
-
 AForm *Intern::makeForm(std::string formName, std::string target)
 {
-	std::string _forms[3];
-	AForm* (*_formCreators[3])(std::string target);
+	AForm* ptr;
 
-	_forms[0] = "presidential pardon";
-	_forms[1] = "robotomy request";
-	_forms[2] = "shrubbery creation";
-	_formCreators[0] = createPresidentialPardonForm;
-	_formCreators[1] = createRobotomyRequestForm;
-	_formCreators[2] = createShrubberyCreationForm;
-	for (int i = 0; i < 3; i++)
-	{
-		if (formName == _forms[i])
-		{
-			std::cout << "Intern creates " << formName << std::endl;
-			return _formCreators[i](target);
-		}
-	}
-	std::cerr << "Intern tried to create '" << formName << "' but it was not to be found anywhere" << std::endl;
-	return NULL;
+	!formName.compare("presidential pardon") ? ptr = new PresidentialPardonForm(target) : !formName.compare("robotomy request") ? ptr = new RobotomyRequestForm(target) :
+		!formName.compare("shrubbery creation") ? ptr = new ShrubberyCreationForm(target) : ptr = NULL;
+	std::cout << (ptr ? "Intern creates " : "Intern tried to create '") << formName << (!ptr ? "' but it was not to be found anywhere" : "") << std::endl;
+	return ptr;
 }

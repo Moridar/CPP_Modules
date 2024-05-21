@@ -7,10 +7,6 @@
 
 class Intern
 {
-	private:
-		static AForm *createPresidentialPardonForm(std::string target);
-		static AForm *createRobotomyRequestForm(std::string target);
-		static AForm *createShrubberyCreationForm(std::string target);
 	public:
 		Intern();
 		~Intern();
