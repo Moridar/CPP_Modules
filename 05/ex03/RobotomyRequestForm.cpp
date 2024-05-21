@@ -31,6 +31,7 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &R
 void RobotomyRequestForm::execute(Bureaucrat const &executor) const
 {
 	AForm::execute(executor);
+	srand(time(NULL));
 	std::cout << "Bzzzzzz" << std::endl;
 	if (rand() % 2)
 		std::cout << _target << " has been robotomized" << std::endl;

@@ -16,10 +16,10 @@ int main()
 	int arr[] = {1, 2, 3, 4, 5};
 	int len = sizeof(arr) / sizeof(arr[0]);
 
-	::iter(arr, len, print);
-	::iter(arr, len, addone);
+	iter(arr, len, print);
+	iter(arr, len, addone);
 	std::cout << "==After adding one to each element==" << std::endl;
-	::iter(arr, len, print);
+	iter(arr, len, print);
 
 	return 0;
 }
