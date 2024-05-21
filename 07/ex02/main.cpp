@@ -23,17 +23,26 @@ int main(int, char**)
     Array<int> assign;
     assign = copy;
 
-    std::cout << std::endl << "==4. Comparing values - Numbers[50] is set to 0 after mirror, assignment and copy==" << std::endl;
+    std::cout << std::endl << "==4. Comparing values - Prints if different values==" << std::endl;
     for (int i = 0; i < MAX_VAL; i++)
     {
         numbers[50] = 0;
-        if (mirror[i] != numbers[i])
+        if (numbers[i] != mirror[i])
             std::cerr << "Numbers[" << i << "]: " << numbers[i] << " and Mirrors[" << i << "]: " << mirror[i] << std::endl;
         if (numbers[i] != copy[i])
             std::cerr << "Numbers[" << i << "]: " << numbers[i] << " and Copy[" << i << "]: " << copy[i] << std::endl;
         if (numbers[i] != assign[i])
             std::cerr << "Numbers[" << i << "]: " << numbers[i] << " and Assign[" << i << "]: " << assign[i] << std::endl;
     }
+    
+    std::cout << std::endl << "==4.1 Testing copy==" << std::endl;
+    copy[13]++;
+    std::cout << "Numbers[13]: " << numbers[13] << " and Copy[13]: " << copy[13] << std::endl;
+    
+    std::cout << std::endl << "==4.2 Testing assign==" << std::endl;
+    assign[14]++;
+    std::cout << "Numbers[14]: " << numbers[14] <<  " and Assign[14]: " << assign[14] << std::endl;
+
     std::cout << std::endl << "==5. Out of range tests==" << std::endl;
     try
     {
@@ -53,11 +62,6 @@ int main(int, char**)
     }
 
     std::cout << std::endl << "==6. Testing size==" << std::endl;
-    for (int i = 0; i < MAX_VAL; i++)
-    {
-        numbers[i] = rand();
-    }
-
     std::cout << "Size of numbers: " << numbers.size() << std::endl;
 
     std::cout << std::endl << "==7. Testing empty==" << std::endl;
@@ -66,6 +70,7 @@ int main(int, char**)
     try
     {
         empty[0] = 'a';
+        std::cout << "Succesfully assigned empty[0] = 'a'" << std::endl;
     }
     catch(const std::exception& e)
     {
