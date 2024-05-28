@@ -20,8 +20,10 @@ static char getType(std::string str)
 
 static void print(char c, int i, float f, double d)
 {
+	std::string str = std::to_string(c).substr(0, 1);
+	
 	std::cout << "char: " << (std::isinf(d) || std::isnan(d) ? "Impossible"
-		: (isprint(c) ? &c : "Non displayable")) << std::endl;	
+		: !isprint(c) ? "Non displayable" : str) << std::endl;	
 	std::cout << "int: " << (std::isinf(d) || std::isnan(d) ? "Impossible"
 		: d < INT32_MIN || d > INT32_MAX ? "Overflow" : std::to_string(i)) << std::endl;
 	std::cout << std::fixed << std::setprecision(1);
@@ -42,6 +44,8 @@ void ScalarConverter::convert(std::string str)
 	try
 	{
 		char type = d == 0 ? getType(str) : 0;
+		std::cout << "type: " << type << std::endl;
+		std::cout << "value: " << str << std::endl;
 		if (type == 'c')
 		{
 			c = str.at(0);
