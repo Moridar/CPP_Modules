@@ -1,5 +1,4 @@
 #include "EasyFind.hpp"
-#include <algorithm>
 #include <iostream>
 #include <array>
 
@@ -50,6 +49,32 @@ int main()
 	try
 	{
 		std::cout << easyfind(arr, 'a') << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	std::cout << std::endl <<  "==8. Using easyfind, replace 5 with 6==" << std::endl;
+	try
+	{
+		int *it = easyfind(arr, 5);
+		std::cout << "Address of value 5: " << it << std::endl;
+		*it = 6;
+		std::cout << "Address of value 6: " << easyfind(arr, 6) << std::endl;
+		std::cout << "Address of value 5: " << easyfind(arr, 5) << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+
+	std::cout << std::endl <<  "==9. Test with vector==" << std::endl;
+	std::vector<int> vec = {1, 2, 3, 4, 100};
+
+	vec.push_back(1337);
+	try
+	{
+		std::cout << easyfind(vec, 1337) << std::endl;
 	}
 	catch(const std::exception& e)
 	{
