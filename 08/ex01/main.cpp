@@ -35,7 +35,28 @@ int main()
 	std::cout << std::endl << "==5. Adding 12th number==" << std::endl;
 	try
 	{
-		span.addNumber(-150);
+		span.addNumber(150);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+
+	std::cout << std::endl << "==6. Assigns new Span with size of 100.000==" << std::endl;
+	span = Span(100000);
+
+	std::cout << std::endl << "==7. Adds 100.000 random numbers to span==" << std::endl;
+	span.addNumbers(100000);
+	std::cout << std::rand() << std::endl;
+
+	std::cout << std::endl << "==8. Shortest and Longest Span==" << std::endl;
+	std::cout << "Shortest span: " << span.shortestSpan() << std::endl;
+	std::cout << "Longest span: " << span.longestSpan() << std::endl;
+	
+	std::cout << std::endl << "==9. Adds another 100.000 random numbers to span==" << std::endl;
+	try
+	{
+		span.addNumbers(100000);
 	}
 	catch(const std::exception& e)
 	{

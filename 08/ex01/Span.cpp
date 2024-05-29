@@ -30,6 +30,13 @@ void Span::addNumber(int num)
 	_vec.push_back(num);
 }
 
+void Span::addNumbers(unsigned int n)
+{
+	srand(time(nullptr));
+	while (n-- > 0)
+		addNumber(rand());
+}
+
 unsigned int Span::shortestSpan()
 {
 	if (_vec.empty())
