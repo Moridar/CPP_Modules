@@ -8,7 +8,7 @@ template <typename T> static void swap(T &a, T &b)
 	b = tmp;
 }
 
-template <typename T> static T min(T a, T b)
+template <typename T> static T min(const T &a, const T &b)
 {
 	return (a < b) ? a : b;
 }
