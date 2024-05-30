@@ -41,9 +41,9 @@ void ScalarConverter::convert(std::string str)
 		: str == "-inff" || str == "-inf" ? -INFINITY : 0;
 	try
 	{
+		if (str == "")
+			throw std::invalid_argument("Error: Empty string");
 		char type = d == 0 ? getType(str) : 0;
-		std::cout << "type: " << type << std::endl;
-		std::cout << "value: " << str << std::endl;
 		if (type == 'c')
 		{
 			c = str.at(0);
@@ -62,7 +62,7 @@ void ScalarConverter::convert(std::string str)
 			}
 			catch(const std::exception& e)
 			{
-				throw std::runtime_error("Double overflows");
+				throw std::runtime_error("Error: Double overflows");
 			}
 		}
 		if (type == 'f')
@@ -76,7 +76,7 @@ void ScalarConverter::convert(std::string str)
 			}
 			catch(const std::exception& e)
 			{
-				throw std::runtime_error("Float overflows");
+				throw std::runtime_error("Error: Float overflows");
 			}
 		}
 		if (type == 'i')
@@ -90,7 +90,7 @@ void ScalarConverter::convert(std::string str)
 			}
 			catch(const std::exception& e)
 			{
-				throw std::runtime_error("Integer overflows");
+				throw std::runtime_error("Error: Integer overflows");
 			}		
 		}
 	}
