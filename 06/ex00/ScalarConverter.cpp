@@ -14,7 +14,7 @@ static char getType(std::string str)
 	if (std::tolower(str[i]) == 'f' && str[i + 1] == 0)
 		return ('f');
 	if (str[i] && !isdigit(str[i]) && str[i] != '.')
-		throw std::invalid_argument("Impossible type: Invalid character in string");
+		throw std::invalid_argument("Impossible type: Only char, int, double and float are allowed");
 	return (dot ? 'd' : 'i');
 }
 
