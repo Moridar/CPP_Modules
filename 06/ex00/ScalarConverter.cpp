@@ -20,10 +20,15 @@ static char getType(std::string str)
 
 static void print(char c, int i, float f, double d)
 {
-	std::cout << "char: " << (std::isinf(d) || std::isnan(d) ? "Impossible"
-		: !isprint(c) ? "Non displayable" : "'" + std::string(1, c) + "'") << std::endl;
-	std::cout << "int: " << (std::isinf(d) || std::isnan(d) ? "Impossible"
-		: d < INT32_MIN || d > INT32_MAX ? "Overflow" : std::to_string(i)) << std::endl;
+	std::cout << "char: " 
+		<< (std::isinf(d) || std::isnan(d) ? "Impossible"
+		: d < -128 || d > 127 ? "Overflow"
+		: !isprint(c) ? "Non displayable"
+		: "'" + std::string(1, c) + "'") << std::endl;
+	std::cout << "int: "
+		<< (std::isinf(d) || std::isnan(d) ? "Impossible"
+		: d < INT32_MIN || d > INT32_MAX ? "Overflow"
+		: std::to_string(i)) << std::endl;
 	std::cout << std::fixed << std::setprecision(1);
 	std::cout << "float: " << f << "f" << std::endl;
 	std::cout << "double: " << d << std::endl;
