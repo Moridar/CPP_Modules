@@ -23,10 +23,10 @@ int main(int, char**)
     Array<int> assign;
     assign = copy;
 
-    std::cout << std::endl << "==4. Comparing values - Prints if different values==" << std::endl;
+    std::cout << std::endl << "==4. Sets number[50] to 0 - Comparing values - Prints if different values==" << std::endl;
+    numbers[50] = 0;
     for (int i = 0; i < MAX_VAL; i++)
     {
-        numbers[50] = 0;
         if (numbers[i] != mirror[i])
             std::cerr << "Numbers[" << i << "]: " << numbers[i] << " and Mirrors[" << i << "]: " << mirror[i] << std::endl;
         if (numbers[i] != copy[i])

@@ -46,7 +46,7 @@ template <typename T>
 T &Array<T>::operator[](unsigned int i)
 {
 	if (i >= _size)
-		throw std::out_of_range("Index out of range");
+		throw std::exception();
 	return _arr[i];
 }
 
