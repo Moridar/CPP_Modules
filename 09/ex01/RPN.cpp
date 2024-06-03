@@ -3,41 +3,40 @@
 static void validate_and_fill(char *argv, std::stack<char> &mstack)
 {
 	if (!argv)
-		throw std::invalid_argument("Error: nullptr");
+		throw std::invalid_argument("Error");
 	while (*argv)
 	{
 		if (!isdigit(*argv) && *argv != '+' &&  *argv != '-' && *argv != '*' && *argv != '/')
-			throw std::invalid_argument("Illegal character");
+			throw std::invalid_argument("Error");
 		mstack.push(*argv);
 		if (*++argv == 0)
 			break ;
 		if (!isspace(*argv))
-			throw std::invalid_argument("Missing a space");
+			throw std::invalid_argument("Error");
 		++argv;
 	}
 }
 
-static int run(std::stack<char> &mstack)
+static int resolve(std::stack<char> &mstack)
 {
 	if (mstack.empty())
-		throw std::invalid_argument("Error too few numbers in stack");
+		throw std::invalid_argument("Error");
 	char top = mstack.top();
 	mstack.pop();
 	if (isdigit(top))
 		return (top - '0');
 	if (top == '+')
-		return (run(mstack) + run(mstack));
+		return (resolve(mstack) + resolve(mstack));
 	if (top == '-')
-		return (- run(mstack) + run(mstack));
+		return (- resolve(mstack) + resolve(mstack));
 	if (top == '*')
-		return (run(mstack) * run(mstack));
+		return (resolve(mstack) * resolve(mstack));
 	if (top == '/')
 	{
-		int tmp = run(mstack);
-		return (run(mstack) / tmp);
+		int tmp = resolve(mstack);
+		return (resolve(mstack) / tmp);
 	}
 	throw std::invalid_argument("Unknown error");
-	return (1337);
 }
 void RPN(char *argv)
 {
@@ -46,10 +45,10 @@ void RPN(char *argv)
 	try
 	{
 		validate_and_fill(argv, mstack);
-		if (mstack.empty())
+		int res = resolve(mstack);
+		if (!mstack.empty())
 			throw std::invalid_argument("Error");
-		int res = run(mstack);
-		std::cout << (mstack.empty() ? std::to_string(res) : "Error") << std::endl;
+		std::cout << res << std::endl;
 	}
 	catch(const std::exception& e)
 	{
