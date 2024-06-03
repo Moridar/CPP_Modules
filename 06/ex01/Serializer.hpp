@@ -1,14 +1,7 @@
 #ifndef SERIALIZER_HPP
 #define SERIALIZER_HPP
 
-#include <string>
-
-typedef struct s_data
-{
-	std::string s1;
-	int n;
-	std::string s2;
-} Data;
+#include "data.hpp"
 
 class Serializer
 {
