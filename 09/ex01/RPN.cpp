@@ -4,16 +4,15 @@ static void validate_and_fill(char *argv, std::stack<char> &mstack)
 {
 	if (!argv)
 		throw std::invalid_argument("Error");
+	while (isspace(*argv))
+		argv++;
 	while (*argv)
 	{
 		if (!isdigit(*argv) && *argv != '+' &&  *argv != '-' && *argv != '*' && *argv != '/')
 			throw std::invalid_argument("Error");
-		mstack.push(*argv);
-		if (*++argv == 0)
-			break ;
-		if (!isspace(*argv))
-			throw std::invalid_argument("Error");
-		++argv;
+		mstack.push(*argv++);
+		while (isspace(*argv))
+			argv++;
 	}
 }
 
