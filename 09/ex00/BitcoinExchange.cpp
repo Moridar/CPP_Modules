@@ -61,40 +61,34 @@ void Exchange::read_wallet(char *filename)
 		std::istringstream iss(line);
 		if (!std::getline(iss, key, '|') || !(iss >> amount))
 			std::cout << "Error: bad input => " << line << std::endl;
-		else if (!is_valid_date(key))
-			std::cout << "Error: bad date => " << line << std::endl;
 		else
 			print(key, amount);
 	}
 	file.close();
 }
 
-void Exchange::print(std::string key, float amount)
+void Exchange::print(std::string &key, float &amount)
 {
-	if (amount < 0 || amount > 1000)
-	{
+	key.erase(key.find_last_not_of(" \t\r") + 1);
+	if (!is_valid_date(key))
+		std::cout << "Error: bad date => " << key << std::endl;
+	else if (amount < 0 || amount > 1000)
 		std::cout << "Error: " << (amount < 0 ? "not a positive number" : "too large a number") << std::endl;
-		return ;
-	}
-	std::cout << key << " => " << amount << " = " << getvalue(key, amount) << std::endl;
+	else
+		std::cout << key << " => " << amount << " = " << getvalue(key, amount) << std::endl;
 }
 
 float Exchange::getvalue(std::string key, float amount)
 {
 	auto it = _rates.lower_bound(key);
 	if (it->first != key)
-	{
-		if (it != _rates.begin())
-			it--;
-		else
+		if (it-- == _rates.begin())
 			return (0);
-	}
 	return (it->second * amount);
 }
 
 bool Exchange::is_valid_date(std::string &date)
 {
-	date.erase(date.find_last_not_of(" ") + 1);
 	std::tm tm = {};
 	std::istringstream ss(date);
 	ss >> std::get_time(&tm, "%Y-%m-%d");

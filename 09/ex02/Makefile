@@ -1,7 +1,7 @@
 NAME = RPN
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++17
-SRCS = RPN.cpp main.cpp
+SRCS = PmergeME.cpp main.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)

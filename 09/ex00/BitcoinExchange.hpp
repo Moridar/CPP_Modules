@@ -17,7 +17,7 @@ class Exchange
 		
 		void	load_rates();
 		void	read_wallet(char *filename);
-		void	print(std::string key, float amount);
+		void	print(std::string &key, float &amount);
 		float	getvalue(std::string key, float amount);
 		bool	is_valid_date(std::string &date);
 
