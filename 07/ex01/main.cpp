@@ -2,7 +2,7 @@
 #include <iostream>
 
 template <typename T>
-static void print(T &i)
+static void print(T const &i)
 {
 	std::cout << i << std::endl;
 }
@@ -19,7 +19,6 @@ int main()
 	int arr[] = {1, 2, 3, 4, 5};
 	int len = sizeof(arr) / sizeof(arr[0]);
 
-	std::cout << len << std::endl;
 	std::cout << "==2. Iter and print every element==" << std::endl;
 	iter(arr, len, print);
 	std::cout << "==3. Iter and add one to every element==" << std::endl;
@@ -35,8 +34,4 @@ int main()
 	iter(arr1, len, addone);
 	std::cout << "==7. Iter and print every element==" << std::endl;
 	iter(arr1, len, print);
-
-
-
-	return 0;
 }

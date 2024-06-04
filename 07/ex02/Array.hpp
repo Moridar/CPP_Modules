@@ -13,6 +13,7 @@ template <typename T> class Array
 		Array(const Array &other);
 		Array &operator=(const Array &other);
 		T &operator[](unsigned int i);
+		const T &operator[](unsigned int i) const;
 		unsigned int size() const;
 };
 

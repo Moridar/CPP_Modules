@@ -78,7 +78,16 @@ int main(int, char**)
     }
     std::cout << "Size of empty: " << empty.size() << std::endl;
 
-    std::cout << std::endl << "==7. Deconstructors==" << std::endl;
+    std::cout << "==8. Testing const array==" << std::endl;
+    const Array<int> carr(copy);
+    std::cout << "const arr size: " << carr.size() << std::endl;
+    std::cout << "carr[0]: " << carr[0] << std::endl;
+    std::cout << "copy[0]: " << copy[0] << std::endl;
+
+    std::cout << "==8.1 Trying to assign new value to const arr==" << std::endl;
+    // carr[0] = 42;
+
+    std::cout << std::endl << "==9. Deconstructors==" << std::endl;
     delete [] mirror;//
     return 0;
 }
