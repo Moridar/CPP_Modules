@@ -15,11 +15,12 @@ class Exchange
 	private:
 		std::map<std::string, float> _rates;
 		
-		void	load_rates();
-		void	read_wallet(char *filename);
-		void	print(std::string &key, float &amount);
-		float	getvalue(std::string key, float amount);
-		bool	is_valid_date(std::string &date);
+		std::ifstream	load_wallet(char *filename);
+		void			load_rates();
+		void			read_wallet(std::ifstream &file);
+		void			print(std::string &key, float &amount);
+		float			getvalue(std::string key, float amount);
+		bool			is_valid_date(std::string &date);
 
 		Exchange(Exchange &copy);
 		Exchange &operator=(const Exchange &assign);
