@@ -88,6 +88,6 @@ int main(int, char**)
     // carr[0] = 42;
 
     std::cout << std::endl << "==9. Deconstructors==" << std::endl;
-    delete [] mirror;//
+    delete [] mirror;
     return 0;
 }
