@@ -8,15 +8,15 @@ int main()
 	std::cout << "==1. Create MutantStack, push 5 and 7, shows the top==" << std::endl;
 	MutantStack<int> mstack;
 	mstack.push(5);
-	mstack.push(17);
+	mstack.push(7);
 	std::cout << mstack.top() << std::endl;
-	std::cout << "==2. Pop the top, show the size, push 3, 5, 737, 0==" << std::endl;
+	std::cout << "==2. Pop the top, show the size==" << std::endl;
 	mstack.pop();
 	std::cout << mstack.size() << std::endl;
+	std::cout << "==2.1  push 3, 5, 737, 0==" << std::endl;
 	mstack.push(3);
 	mstack.push(5);
 	mstack.push(737);
-	//[...]
 	mstack.push(0);
 	MutantStack<int>::iterator it = mstack.begin();
 	MutantStack<int>::iterator ite = mstack.end();
@@ -39,7 +39,7 @@ int main()
 	for (int i : *newStack)
 		std::cout << i << std::endl;
 
-	std::cout << "==6. Copies the last stack, deletes it and print the values==" << std::endl;
+	std::cout << "==6. Copies the last stack, deletes the last stack, and print the values of the copy==" << std::endl;
 	MutantStack<int> copyStack(*newStack);
 	delete newStack;
 	for (int i : copyStack)
@@ -50,5 +50,6 @@ int main()
 	copyStack.push(43);
 	for (int i : assignStack)
 		std::cout << i << std::endl;
+
 	return 0;
 }
