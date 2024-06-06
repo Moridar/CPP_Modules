@@ -2,7 +2,7 @@
 
 Span::Span(unsigned int n) : _n(n)
 {
-	std::cout << "Span Constructor" << std::endl;
+	std::cout << "Span Constructor, size: " << n << std::endl;
 }
 
 Span::~Span()
@@ -12,10 +12,12 @@ Span::~Span()
 
 Span::Span(const Span &other) : _n(other._n), _vec(other._vec)
 {
+	std::cout << "Span Copy Constructor" << std::endl;
 }
 
 Span &Span::operator=(const Span &other)
 {
+	std::cout << "Span Assignment Operator" << std::endl;
 	if (this == &other)
 		return (*this);
 	_n = other._n;

@@ -19,7 +19,7 @@ class Span
 		Span &operator=(const Span &other);
 
 		void addNumber(int n);
-		void addNumbers(unsigned n);
+		void addNumbers(unsigned int n);
 		unsigned int shortestSpan();
 		unsigned int longestSpan();		
 };

@@ -47,16 +47,16 @@ int main()
 
 	std::cout << std::endl << "==7. Adds 100.000 random numbers to span==" << std::endl;
 	span.addNumbers(100000);
-	std::cout << std::rand() << std::endl;
 
 	std::cout << std::endl << "==8. Shortest and Longest Span==" << std::endl;
 	std::cout << "Shortest span: " << span.shortestSpan() << std::endl;
 	std::cout << "Longest span: " << span.longestSpan() << std::endl;
 	
-	std::cout << std::endl << "==9. Adds another 100.000 random numbers to span==" << std::endl;
+	std::cout << std::endl << "==9. Make a copy of span, adds another 100.000 random numbers to the copy==" << std::endl;
+	Span copy(span);
 	try
 	{
-		span.addNumbers(100000);
+		copy.addNumbers(100000);
 	}
 	catch(const std::exception& e)
 	{
