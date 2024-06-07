@@ -2,14 +2,21 @@
 #define PMERGEME_HPP
 
 #include <iostream>
-#include <array>
+#include <vector>
 #include <list>
+#include <sstream>
+#include <chrono>
 
 class PmergeME
 {
 	private:
-		static double pmerge_list();
-		static double pmerge_vec();
+		std::vector<unsigned int> _vec;
+		std::list<unsigned int> _list;
+		std::list<unsigned int> pmerge_list();
+		std::vector<unsigned int> pmerge_vec();
+		void fill_containers(int argc, char **argv);
+		void print(std::string str, std::vector<unsigned int> vec);
+		void print(std::string str, std::list<unsigned int> list);
 
 		PmergeME();
 		~PmergeME();
