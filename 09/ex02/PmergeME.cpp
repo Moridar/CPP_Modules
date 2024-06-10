@@ -7,19 +7,26 @@ void PmergeME::pmerge(int argc, char **argv)
 {
 	PmergeME me;
 
-	me.fill_containers(argc, argv);
-	me.print("Before: ", me._vec);
-	auto vecstart = std::chrono::high_resolution_clock::now();
-	me._vec = me.pmerge_vec();
-	auto vecend = std::chrono::high_resolution_clock::now();
-	auto lstart = std::chrono::high_resolution_clock::now();
-	me._list = me.pmerge_list();
-	auto lend = std::chrono::high_resolution_clock::now();
-	me.print("After: ", me._vec);
-	double vdur = std::chrono::duration_cast<std::chrono::microseconds>(vecend - vecstart).count();
-	double ldur = std::chrono::duration_cast<std::chrono::microseconds>(lend - lstart).count();
-	std::cout << "Time to process a range of " << me._vec.size() << " elements with std::vector : " << vdur << " us" << std::endl;
-	std::cout << "Time to process a range of " << me._list.size() << " elements with std::list : " << ldur << " us" << std::endl;
+	try
+	{
+		me.fill_containers(argc, argv);
+		me.print("Before: ", me._vec);
+		auto vecstart = std::chrono::high_resolution_clock::now();
+		me._vec = me.pmerge_vec();
+		auto vecend = std::chrono::high_resolution_clock::now();
+		auto lstart = std::chrono::high_resolution_clock::now();
+		me._list = me.pmerge_list();
+		auto lend = std::chrono::high_resolution_clock::now();
+		me.print("After: ", me._vec);
+		double vdur = std::chrono::duration_cast<std::chrono::nanoseconds>(vecend - vecstart).count();
+		double ldur = std::chrono::duration_cast<std::chrono::nanoseconds>(lend - lstart).count();
+		std::cout << "Time to process a range of " << me._vec.size() << " elements with std::vector : " << vdur/1000 << " us" << std::endl;
+		std::cout << "Time to process a range of " << me._list.size() << " elements with std::list : " << ldur/1000 << " us" << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
 
 }
 
