@@ -159,21 +159,18 @@ std::list<unsigned int>  PmergeME::pmerge_list()
 	if (_list.size() <= 1)
 		return (_list);
 	
-	//1. Creates Pair
+	//1. Creates Pair, sets the larger number to first. 
 	auto it = _list.begin();
 	auto it1 = std::next(_list.begin(), 1);
 	auto ite = _list.end();
 	while (it != ite && it1 != ite)
 	{
-		pair_list.push_back(std::make_pair(*it, *it1));
+		std::pair<unsigned int, unsigned int> pair;
+		pair = (*it > *it1) ? std::make_pair(*it, *it1) : std::make_pair(*it1, *it);
+		pair_list.push_back(pair);
 		std::advance(it, 2);
 		std::advance(it1, 2);
 	}
-	
-	//2. Determines larger in pair, sets it to first. 
-	for (auto &p : pair_list)
-		if (p.second > p.first)
-			std::swap(p.first, p.second);
 	
 	//3. Sorts pair_list
 	pair_list.sort();
@@ -202,7 +199,10 @@ std::list<unsigned int>  PmergeME::pmerge_list()
 	}
 	//6. If the orignal list is odd, insert the last element.
 	if (_list.size() % 2 == 1)
-		list.insert(list_binary_search(list.begin(), list.end(), _list.back()), _list.back());
+	{
+		unsigned int insert_num = _list.back();
+		list.insert(list_binary_search(list.begin(), list.end(), insert_num), insert_num);
+	}
 	return (list);
 }
 
@@ -210,14 +210,16 @@ std::list<unsigned int>::iterator PmergeME::list_binary_search(std::list<unsigne
 {
 	while (1)
 	{
-		std::list<unsigned int>::iterator m = std::next(l, std::distance(l, r) / 2);
+		int distance = std::distance(l, r);
+		if (distance < 2)
+			return n < *l ? l : r;
+		std::list<unsigned int>::iterator m = std::next(l, distance / 2);
 		if (*m == n)
 			return (m);
 		if (n > *m)
 			l = std::next(m);
 		else
 			r = std::prev(m);
-		if (std::distance(l, r) < 2)
-			return n < *l ? l : r;
+		
 	}
 }
