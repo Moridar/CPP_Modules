@@ -17,11 +17,12 @@ void PmergeME::pmerge(int argc, char **argv)
 		auto lstart = std::chrono::high_resolution_clock::now();
 		me._list = me.pmerge_list();
 		auto lend = std::chrono::high_resolution_clock::now();
-		me.print("After: ", me._vec);
+		me.print("After vector: ", me._vec);
+		me.print("After list  : ", me._list);
 		double vdur = std::chrono::duration_cast<std::chrono::nanoseconds>(vecend - vecstart).count();
 		double ldur = std::chrono::duration_cast<std::chrono::nanoseconds>(lend - lstart).count();
 		std::cout << "Time to process a range of " << me._vec.size() << " elements with std::vector : " << vdur/1000 << " us" << std::endl;
-		std::cout << "Time to process a range of " << me._list.size() << " elements with std::list : " << ldur/1000 << " us" << std::endl;
+		std::cout << "Time to process a range of " << me._list.size() << " elements with std::list   : " << ldur/1000 << " us" << std::endl;
 	}
 	catch(const std::exception& e)
 	{
@@ -118,7 +119,7 @@ std::vector<unsigned int> PmergeME::pmerge_vec()
 	//4. Insert at the start of S, the elemented paired with smallest element in S.
 	vec.insert(vec.begin(), pair_vec.begin()->second);
 	
-	//5. Insert the remaining, following Jaoobsthal sequence.
+	//5. Insert the remaining, following Jacobsthal sequence.
 	if (pair_vec.size() != 1)
 	{
 		int jacob_seq = 3;
@@ -185,30 +186,38 @@ std::list<unsigned int>  PmergeME::pmerge_list()
 	// 4. Insert at the start of S, the elemented paired with smallest element in S.
 	list.insert(list.begin(), pair_list.begin()->second);
 	
-	// 5. Insert the remaining, following Jaoobsthal sequence.
+	// 5. Insert the remaining, following Jacobsthal sequence.
 	if (pair_list.size() > 1)
 	{
 		int jacob_seq = 3;
 		int inserted = 1;
 		for (size_t i = std::min((int) pair_list.size() - 1, 2); i < pair_list.size(); i = get_next_jacobsthal(i, jacob_seq, pair_list.size()))
 		{
-			it = list.begin();
 			ite = std::next(list.begin(), i + inserted);
-			auto itp = std::next(pair_list.begin(), i);
-			while (it != ite && *it < itp->second)
-				it++;
-			list.insert(it, itp->second);
+			int insert_num = std::next(pair_list.begin(), i)->second;
+			it = list_binary_search(list.begin(), ite, insert_num);
+			list.insert(it, insert_num);
 			inserted++;
 		}
 	}
 	//6. If the orignal list is odd, insert the last element.
 	if (_list.size() % 2 == 1)
-	{
-		it = list.begin();
-		ite = list.end();
-		while (it != ite && *it < _list.back())
-			it++;
-		list.insert(it, _list.back());
-	}
+		list.insert(list_binary_search(list.begin(), list.end(), _list.back()), _list.back());
 	return (list);
+}
+
+std::list<unsigned int>::iterator PmergeME::list_binary_search(std::list<unsigned int>::iterator l, std::list<unsigned int>::iterator r, unsigned int n)
+{
+	while (1)
+	{
+		std::list<unsigned int>::iterator m = std::next(l, std::distance(l, r) / 2);
+		if (*m == n)
+			return (m);
+		if (n > *m)
+			l = std::next(m);
+		else
+			r = std::prev(m);
+		if (std::distance(l, r) < 2)
+			return n < *l ? l : r;
+	}
 }

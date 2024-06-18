@@ -6,6 +6,7 @@
 #include <list>
 #include <sstream>
 #include <chrono>
+#include <algorithm>
 
 class PmergeME
 {
@@ -18,6 +19,7 @@ class PmergeME
 		void fill_containers(int argc, char **argv);
 		void print(std::string str, std::vector<unsigned int> vec);
 		void print(std::string str, std::list<unsigned int> list);
+		std::list<unsigned int>::iterator list_binary_search(std::list<unsigned int>::iterator l, std::list<unsigned int>::iterator r, unsigned int n);
 
 		PmergeME();
 		~PmergeME();
