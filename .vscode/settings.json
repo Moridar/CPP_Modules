@@ -1,7 +1,7 @@
 {
 	"files.associations": {
-		"*.tpp": "cpp",
 		"*.hpp": "cpp",
+		"*.tpp": "cpp",
 		"ostream": "cpp",
 		"atomic": "cpp",
 		"*.tcc": "cpp",
@@ -73,6 +73,12 @@
 		"type_traits": "cpp",
 		"typeinfo": "cpp",
 		"utility": "cpp",
-		"filesystem": "cpp"
+		"filesystem": "cpp",
+		"clocale": "cpp",
+		"compare": "cpp",
+		"concepts": "cpp",
+		"numeric": "cpp",
+		"random": "cpp",
+		"numbers": "cpp"
 	}
 }
