@@ -26,18 +26,27 @@ void PmergeMe::pmerge(int argc, char **argv)
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cerr << "Error" << '\n';
 	}
 
 }
 
-
+static void validate_input(char *str)
+{
+	while (*str)
+	{
+		if (!isdigit(*str) && !isspace(*str))
+			throw std::invalid_argument("Only positive numbers is accepted");
+		str++;
+	}
+}
 void PmergeMe::fill_containers(int argc, char **argv)
 {
 	unsigned int n;
 
 	for (int i = 1; i < argc; i++)
 	{
+		validate_input(argv[i]);
 		std::istringstream iss(argv[i]);
 		if (!(iss >> n))
 			throw std::invalid_argument("bad argument");	

@@ -7,6 +7,7 @@
 #include <sstream>
 #include <chrono>
 #include <algorithm>
+#include <exception>
 
 using t_pair = std::pair<unsigned int, unsigned int>;
 
