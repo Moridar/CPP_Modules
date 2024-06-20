@@ -6,6 +6,20 @@
 #include <iostream>
 #include <stack>
 
-void RPN(char *argv);
+class RPN
+{
+    private:
+        void    validate_and_fill(char *argv);
+        int     resolve();
+        bool    isempty();
+        std::stack<char>    _mstack;
+
+        RPN();
+        RPN(const RPN &);
+        RPN &operator=(const RPN &);
+        ~RPN();
+    public:
+        static void calc(char *argv);
+};
 
 #endif

@@ -1,6 +1,10 @@
 #include "RPN.hpp"
 
-static void validate_and_fill(char *argv, std::stack<char> &mstack)
+RPN::RPN() {}
+RPN::~RPN() {}
+
+
+void RPN::validate_and_fill(char *argv)
 {
 	if (!argv)
 		throw std::invalid_argument("Error");
@@ -10,42 +14,49 @@ static void validate_and_fill(char *argv, std::stack<char> &mstack)
 	{
 		if (!isdigit(*argv) && *argv != '+' &&  *argv != '-' && *argv != '*' && *argv != '/')
 			throw std::invalid_argument("Error");
-		mstack.push(*argv++);
+		_mstack.push(*argv++);
 		while (isspace(*argv))
 			argv++;
 	}
 }
 
-static int resolve(std::stack<char> &mstack)
+int RPN::resolve()
 {
-	if (mstack.empty())
+	if (_mstack.empty())
 		throw std::invalid_argument("Error");
-	char top = mstack.top();
-	mstack.pop();
+	char top = _mstack.top();
+	_mstack.pop();
 	if (isdigit(top))
 		return (top - '0');
 	if (top == '+')
-		return (resolve(mstack) + resolve(mstack));
+		return (resolve() + resolve());
 	if (top == '-')
-		return (- resolve(mstack) + resolve(mstack));
+	{
+		int tmp = resolve();
+		return (resolve() - tmp);
+	}
 	if (top == '*')
-		return (resolve(mstack) * resolve(mstack));
+		return (resolve() * resolve());
 	if (top == '/')
 	{
-		int tmp = resolve(mstack);
-		return (resolve(mstack) / tmp);
+		int tmp = resolve();
+		return (resolve() / tmp);
 	}
 	throw std::invalid_argument("Unknown error");
 }
-void RPN(char *argv)
-{
-	std::stack<char> mstack;
 
+bool RPN::isempty()
+{
+	return _mstack.empty();
+}
+void RPN::calc(char *argv)
+{
+	RPN rpn;
 	try
 	{
-		validate_and_fill(argv, mstack);
-		int res = resolve(mstack);
-		if (!mstack.empty())
+		rpn.validate_and_fill(argv);
+		int res = rpn.resolve();
+		if (!rpn.isempty())
 			throw std::invalid_argument("Error");
 		std::cout << res << std::endl;
 	}
