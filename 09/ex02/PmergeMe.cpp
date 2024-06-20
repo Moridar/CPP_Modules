@@ -242,8 +242,8 @@ t_pairlist PmergeMe::mergeSort(t_listiterator l, t_listiterator r)
 	if (size <= 3)
 	{
 		t_pairlist pair_list;
-		int first = *l;
-		int second = *std::next(l, 1);
+		unsigned int first = *l;
+		unsigned int second = *std::next(l, 1);
 		t_pair pair = (first > second) ? std::make_pair(first, second) : std::make_pair(second, first);
 		pair_list.push_back(pair);
 		return pair_list;
