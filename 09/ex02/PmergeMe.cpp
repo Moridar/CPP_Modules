@@ -88,9 +88,11 @@ static int get_next_jacobsthal(int n, int &jacob_seq, size_t size)
 //1.1 Splits the input elements until 2
 //1.2 Create pair with larger on first.
 //1.3 Recursively sort
-//4. Insertion: 
-//4.1 Insert at the start of S, the elemented paired with smallest element in S.
-//4.2 Insert the remaining, following Jacobsthal sequence.
+//2.1 Creates a sorted sequence S of the larger numbers of each pair.
+//3. Insertion: 
+//3.1 Insert at the start of S, the elemented paired with smallest element in S.
+//3.2 Insert the remaining, following Jacobsthal sequence.
+//4. If the orignal vector is odd, insert the last element.
 void PmergeMe::pmerge_vec()
 {
 	t_pair odd;
@@ -103,13 +105,11 @@ void PmergeMe::pmerge_vec()
 		_vec.pop_back();
 	}
 	t_pairvec pair_vec = mergeSort(0, _vec.size() - 1);
-	//3.1 Creates a sorted sequence S of the larger numbers of each pair.
 	_vec.clear();
 	for (t_pair &p : pair_vec)
 		_vec.push_back(p.first);
 	
 	insertion(pair_vec);
-	//6. If the orignal vector is odd, insert the last element.
 	if (odd.first)
 	{
 		t_veciterator it = vec_binary_search(0, _vec.size() - 1, odd.second);
